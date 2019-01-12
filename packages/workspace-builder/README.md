@@ -184,8 +184,6 @@ Here is a list of all the official builder modules available on npm:
 Runs babel in the workspace such that each file in `src` is compiled to a file in `dist`.
 Uses your `babel.config.js` or `.babelrc` from your monorepo root, or a default config if you don't have one.
 
-```
-
 ### `@workspace-builder/copy-ts`
 
 Copies all `*.ts` files from `src` to `dist`. This way, the type definitions are available when other people install your package from npm.
@@ -204,4 +202,7 @@ If you have a `rollup.config.js` in the monorepo root, it will use it. If not, i
 ## License
 
 MIT
+
+```
+
 ```
