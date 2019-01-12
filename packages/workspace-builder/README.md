@@ -202,7 +202,3 @@ If you have a `rollup.config.js` in the monorepo root, it will use it. If not, i
 ## License
 
 MIT
-
-```
-
-```
