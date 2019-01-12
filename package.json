@@ -1,0 +1,18 @@
+{
+  "name": "workspace-builder-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/babel",
+    "packages/copy-ts",
+    "packages/rollup-cjs",
+    "packages/rollup-umd",
+    "packages/tools",
+    "packages/workspace-builder"
+  ],
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-config-unobtrusive": "^1.2.2",
+    "eslint-plugin-import": "^2.14.0",
+    "prettier": "^1.15.3"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "extends": ["unobtrusive", "unobtrusive/import"],
+  "env": {
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "globals": {
+    "run_spec": false
+  }
+}

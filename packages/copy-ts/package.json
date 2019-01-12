@@ -1,0 +1,13 @@
+{
+  "name": "@workspace-builder/copy-ts",
+  "version": "0.1.0",
+  "main": "index.js",
+  "keywords": [
+    "workspace-builder"
+  ],
+  "author": "Lily Scott <me@suchipi.com>",
+  "dependencies": {
+    "globby": "^9.0.0",
+    "shelljs": "^0.8.3"
+  }
+}
