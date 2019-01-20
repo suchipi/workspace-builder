@@ -4,6 +4,7 @@
   "workspaces": [
     "packages/babel",
     "packages/copy-ts",
+    "packages/rollup",
     "packages/rollup-cjs",
     "packages/rollup-umd",
     "packages/tools",

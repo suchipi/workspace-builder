@@ -35,6 +35,7 @@ Here is a list of all the official builder modules available on npm:
 
 - [`@workspace-builder/babel`](https://npm.im/@workspace-builder/babel)
 - [`@workspace-builder/copy-ts`](https://npm.im/@workspace-builder/copy-ts)
+- [`@workspace-builder/rollup`](https://npm.im/@workspace-builder/rollup)
 - [`@workspace-builder/rollup-cjs`](https://npm.im/@workspace-builder/rollup-cjs)
 - [`@workspace-builder/rollup-umd`](https://npm.im/@workspace-builder/rollup-umd)
 
