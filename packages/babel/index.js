@@ -1,16 +1,27 @@
 const fs = require("fs");
 const path = require("path");
-const { bin, root, exec } = require("@workspace-builder/tools");
-
-let babelConfig = path.resolve(__dirname, "defaultbabelrc");
-if (fs.existsSync(root(".babelrc"))) {
-  babelConfig = root(".babelrc");
-}
-if (fs.existsSync(root("babel.config.js"))) {
-  babelConfig = root("babel.config.js");
-}
+const {
+  bin,
+  rootDir,
+  workspaceDir,
+  exec,
+} = require("@workspace-builder/tools");
 
 module.exports = function build(workspace) {
+  let babelConfig = path.resolve(__dirname, "defaultbabelrc");
+  if (fs.existsSync(rootDir(".babelrc"))) {
+    babelConfig = rootDir(".babelrc");
+  }
+  if (fs.existsSync(rootDir("babel.config.js"))) {
+    babelConfig = rootDir("babel.config.js");
+  }
+  if (fs.existsSync(workspaceDir(".babelrc"))) {
+    babelConfig = workspaceDir(".babelrc");
+  }
+  if (fs.existsSync(workspaceDir("babel.config.js"))) {
+    babelConfig = workspaceDir("babel.config.js");
+  }
+
   exec(
     `env NODE_ENV=production ${bin(
       "babel"

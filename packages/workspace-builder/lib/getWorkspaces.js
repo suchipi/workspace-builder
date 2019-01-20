@@ -1,8 +1,8 @@
 const path = require("path");
 const fs = require("fs");
 const chalk = require("chalk");
-const { root } = require("@workspace-builder/tools");
-const pkgJson = require(root("package.json"));
+const { rootDir } = require("@workspace-builder/tools");
+const pkgJson = require(rootDir("package.json"));
 
 module.exports = function getWorkspaces() {
   const workspaces = pkgJson.workspaces.map((shortPath) => {

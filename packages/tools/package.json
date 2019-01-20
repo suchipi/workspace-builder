@@ -1,7 +1,7 @@
 {
   "name": "@workspace-builder/tools",
   "description": "Helper methods for workspace-builder build method modules",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "index.js",
   "author": "Lily Scott <me@suchipi.com>",
   "dependencies": {

@@ -1,6 +1,6 @@
 const { cd, rm, mkdir } = require("shelljs");
 const chalk = require("chalk");
-const { root } = require("@workspace-builder/tools");
+const { rootDir, workspaceDir } = require("@workspace-builder/tools");
 
 module.exports = function build(workspace) {
   let { "workspace-builder": workspaceBuilder } = workspace.packageJson;
@@ -28,11 +28,16 @@ module.exports = function build(workspace) {
     let builder;
     try {
       // Try path relative to monorepo root
-      builder = require(root(buildMethod));
+      builder = require(rootDir(buildMethod));
     } catch (err) {
-      // Otherwise, try bare require (for node_modules lookup)
-      // This is the one whose error message should be user-facing because its error message is clearer imo
-      builder = require(buildMethod);
+      // Try path relative to workspace root
+      try {
+        builder = require(workspaceDir(buildMethod));
+      } catch (err) {
+        // Otherwise, try bare require (for node_modules lookup)
+        // This is the one whose error message should be user-facing because its error message is clearer imo
+        builder = require(buildMethod);
+      }
     }
 
     builder(workspace);

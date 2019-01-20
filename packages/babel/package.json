@@ -1,13 +1,13 @@
 {
   "name": "@workspace-builder/babel",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "index.js",
   "keywords": [
     "workspace-builder"
   ],
   "author": "Lily Scott <me@suchipi.com>",
   "dependencies": {
-    "@workspace-builder/tools": "0.1.0",
+    "@workspace-builder/tools": "0.2.0",
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "babel-preset-react-app": "7.0.0"

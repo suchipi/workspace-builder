@@ -1,16 +1,25 @@
 const fs = require("fs");
 const path = require("path");
-const { bin, root, exec } = require("@workspace-builder/tools");
-
-let rollupConfig = path.resolve(__dirname, "default-rollup.config.js");
-if (fs.existsSync(root("rollup.config.js"))) {
-  rollupConfig = root("rollup.config.js");
-}
+const {
+  bin,
+  rootDir,
+  workspaceDir,
+  exec,
+} = require("@workspace-builder/tools");
 
 module.exports = function build(workspace) {
+  let rollupConfig = path.resolve(__dirname, "default-rollup.config.js");
+  if (fs.existsSync(rootDir("rollup.config.js"))) {
+    rollupConfig = rootDir("rollup.config.js");
+  }
+  if (fs.existsSync(workspaceDir("rollup.config.js"))) {
+    rollupConfig = workspaceDir("rollup.config.js");
+  }
+
+  const entry = workspace.packageJson.rollupCjsEntry || "src/index.js";
+  const output = workspace.packageJson.rollupCjsOutput || "dist/index.js";
+
   exec(
-    `${bin(
-      "rollup"
-    )} -c ${rollupConfig} src/index.js --file dist/index.js --format cjs`
+    `${bin("rollup")} -c ${rollupConfig} ${entry} --file ${output} --format cjs`
   );
 };

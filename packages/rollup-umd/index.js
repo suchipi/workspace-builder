@@ -1,26 +1,37 @@
 const chalk = require("chalk");
 const fs = require("fs");
 const path = require("path");
-const { bin, root, exec } = require("@workspace-builder/tools");
-
-let rollupConfig = path.resolve(__dirname, "default-rollup.config.js");
-if (fs.existsSync(root("rollup.config.js"))) {
-  rollupConfig = root("rollup.config.js");
-}
+const {
+  bin,
+  rootDir,
+  workspaceDir,
+  exec,
+} = require("@workspace-builder/tools");
 
 module.exports = function build(workspace) {
-  const { umdBundleName } = workspace.packageJson;
-  if (!umdBundleName) {
+  let rollupConfig = path.resolve(__dirname, "default-rollup.config.js");
+  if (fs.existsSync(rootDir("rollup.config.js"))) {
+    rollupConfig = rootDir("rollup.config.js");
+  }
+  if (fs.existsSync(workspaceDir("rollup.config.js"))) {
+    rollupConfig = workspaceDir("rollup.config.js");
+  }
+
+  const { rollupUmdBundleName } = workspace.packageJson;
+  if (!rollupUmdBundleName) {
     throw new Error(
       chalk`{red Cannot build ${
         workspace.name
-      } because it has no 'umdBundleName' key in its package.json}`
+      } because it has no 'rollupUmdBundleName' key in its package.json}`
     );
   }
+
+  const entry = workspace.packageJson.rollupUmdEntry || "src/index.js";
+  const output = workspace.packageJson.rollupUmdOutput || "dist/index.js";
 
   exec(
     `${bin(
       "rollup"
-    )} -c ${rollupConfig} src/index.js --file dist/index.js --format umd --name ${umdBundleName}`
+    )} -c ${rollupConfig} ${entry} --file ${output} --format umd --name ${rollupUmdBundleName}`
   );
 };
