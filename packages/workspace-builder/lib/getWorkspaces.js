@@ -6,7 +6,7 @@ const pkgJson = require(rootDir("package.json"));
 
 module.exports = function getWorkspaces() {
   const workspaces = pkgJson.workspaces.map((shortPath) => {
-    const fullPath = root(shortPath);
+    const fullPath = rootDir(shortPath);
 
     if (!fs.existsSync(fullPath)) {
       throw new Error(
