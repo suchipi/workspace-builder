@@ -18,6 +18,7 @@ When run, this tool will:
     path: string; // absolute path to the workspace directory
     packageJson: Object; // The package.json for the workspace
     srcDir: string | null; // absolute path to the workspace's src directory, if it exists
+    dependsOn: Array<Workspace>; // array of workspace packages that this workspace has in its package.json dependencies
   }
   ```
 

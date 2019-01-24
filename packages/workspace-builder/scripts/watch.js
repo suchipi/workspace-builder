@@ -3,20 +3,32 @@ const getWorkspaces = require("../lib/getWorkspaces");
 const build = require("../lib/build");
 const debounce = require("lodash/debounce");
 
-const buildAndLogError = (workspace) => {
+const workspaces = getWorkspaces();
+
+function buildAndLogError(workspace, isBuilt = {}) {
+  if (isBuilt[workspace.name]) {
+    return;
+  }
   try {
     build(workspace);
+    isBuilt[workspace.name] = true;
   } catch (err) {
     console.error(err);
   }
-};
 
-getWorkspaces()
-  .map((workspace) => {
-    // First, build all workspaces
-    buildAndLogError(workspace);
-    return workspace;
-  })
+  // Build anything that could need to be rebuilt as a
+  // result of us changing
+  workspaces.forEach((otherWorkspace) => {
+    if (otherWorkspace.dependsOn.includes(workspace)) {
+      buildAndLogError(otherWorkspace, isBuilt);
+    }
+  });
+}
+
+// First, build all workspaces
+require("./build");
+
+workspaces
   // then, for the ones with src dirs...
   .filter((workspace) => workspace.srcDir)
   .forEach((workspace) => {

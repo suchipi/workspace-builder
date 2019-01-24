@@ -22,7 +22,23 @@ module.exports = function getWorkspaces() {
       path: fullPath,
       packageJson: workspacePkgJson,
       srcDir: fs.existsSync(srcDirLocation) ? srcDirLocation : null,
+      dependsOn: [],
     };
+  });
+
+  workspaces.forEach((workspace) => {
+    const deps = workspace.packageJson.dependencies || {};
+    const devDeps = workspace.packageJson.devDependencies || {};
+    const keys = Object.keys(deps).concat(Object.keys(devDeps));
+
+    keys.forEach((dep) => {
+      const otherWorkspace = workspaces.find(
+        (otherWorkspace) => otherWorkspace.packageJson.name === dep
+      );
+      if (otherWorkspace) {
+        workspace.dependsOn.push(otherWorkspace);
+      }
+    });
   });
 
   return workspaces;
