@@ -7,7 +7,7 @@ const {
   exec,
 } = require("@workspace-builder/tools");
 
-module.exports = function build(workspace) {
+module.exports = function build(workspace, options) {
   let babelConfig = path.resolve(__dirname, "defaultbabelrc");
   if (fs.existsSync(rootDir(".babelrc"))) {
     babelConfig = rootDir(".babelrc");
@@ -23,7 +23,9 @@ module.exports = function build(workspace) {
   }
 
   exec(
-    `env NODE_ENV=production ${bin(
+    `env NODE_ENV="${
+      process.env.NODE_ENV || options.watch ? "development" : "production"
+    }" ${bin(
       "babel"
     )} --config-file ${babelConfig} --extensions ".ts,.js" src -d dist --ignore *.test.js`
   );

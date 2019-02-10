@@ -1,30 +1,21 @@
+const path = require("path");
 const { cd, rm, mkdir } = require("shelljs");
 const chalk = require("chalk");
-const { rootDir, workspaceDir } = require("@workspace-builder/tools");
+const { rootDir } = require("@workspace-builder/tools");
 
-module.exports = function build(workspace) {
+function getBuilders(workspace) {
   let { "workspace-builder": workspaceBuilder } = workspace.packageJson;
   if (!workspaceBuilder) {
-    console.log(
-      chalk`{yellow Skipping ${
-        workspace.name
-      } because it has no "workspace-builder" key in its package.json.}`
-    );
-    return;
+    return [];
   }
 
-  cd(workspace.path);
-  mkdir("-p", "dist");
-  rm("-rf", "dist/*");
+  const workspaceDir = (...parts) => path.resolve(workspace.path, ...parts);
 
-  console.log(chalk`{blue Building ${workspace.name}}`);
-
-  workspaceBuilder = Array.isArray(workspaceBuilder)
+  const workspaceBuilders = Array.isArray(workspaceBuilder)
     ? workspaceBuilder
     : [workspaceBuilder];
-  workspaceBuilder.forEach((buildMethod) => {
-    console.log(chalk`{cyan ${workspace.name}: ${buildMethod}}`);
 
+  return workspaceBuilders.map((buildMethod) => {
     let builder;
     try {
       // Try path relative to monorepo root
@@ -35,11 +26,42 @@ module.exports = function build(workspace) {
         builder = require(workspaceDir(buildMethod));
       } catch (err) {
         // Otherwise, try bare require (for node_modules lookup)
-        // This is the one whose error message should be user-facing because its error message is clearer imo
-        builder = require(buildMethod);
+        try {
+          builder = require(buildMethod);
+        } catch (err) {
+          const message = [
+            chalk`{red Failed to load the builder specified by the 'workspace-builder' key in ${
+              workspace.name
+            }'s package.json.}`,
+            "Tried to require:",
+            "  " + rootDir(buildMethod),
+            "  " + workspaceDir(buildMethod),
+            "  " + buildMethod,
+          ].join("\n");
+
+          throw new Error(message);
+        }
       }
     }
 
-    builder(workspace);
+    return {
+      name: buildMethod,
+      run: (...args) => {
+        cd(workspace.path);
+        return builder(...args);
+      },
+      managesOwnWatcher: builder.managesOwnWatcher,
+    };
   });
+}
+
+function clean(workspace) {
+  cd(workspace.path);
+  mkdir("-p", "dist");
+  rm("-rf", "dist/*");
+}
+
+module.exports = {
+  clean,
+  getBuilders,
 };

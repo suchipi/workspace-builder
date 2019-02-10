@@ -1,5 +1,6 @@
+const chalk = require("chalk");
 const getWorkspaces = require("../lib/getWorkspaces");
-const build = require("../lib/build");
+const { clean, getBuilders } = require("../lib/build");
 
 const isBuilt = {};
 
@@ -10,7 +11,25 @@ function doBuild(workspace) {
     workspace.dependsOn.forEach((depWorkspace) => {
       doBuild(depWorkspace);
     });
-    build(workspace);
+
+    const builders = getBuilders(workspace);
+    if (builders.length === 0) {
+      console.log(
+        chalk`{yellow Skipping ${
+          workspace.name
+        } because it has no 'workspace-builder' key in its package.json}`
+      );
+    } else {
+      console.log(chalk`{grey Cleaning ${workspace.name}}`);
+      clean(workspace);
+
+      console.log(chalk`{blue Building ${workspace.name}}`);
+      builders.forEach((builder) => {
+        console.log(chalk`{cyan ${workspace.name}: ${builder.name}}`);
+        builder.run(workspace, { watch: false });
+      });
+    }
+
     isBuilt[workspace.name] = true;
   }
 }

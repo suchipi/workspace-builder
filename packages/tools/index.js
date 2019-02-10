@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const shelljs = require("shelljs");
 const chalk = require("chalk");
+const child_process = require("child_process");
 
 // This changes during a build so we need to get it now.
 // NOTE: This assumes workspace-builder is run from the build rootDir.
@@ -28,10 +29,19 @@ const exec = (cmd) => {
   }
   return result;
 };
+const spawn = (cmd) => {
+  const parts = cmd.split(" ").map((part) => part.trim());
+  const [program, ...args] = parts;
+  return child_process.spawn(program, args, {
+    stdio: "inherit",
+    cwd: process.cwd(),
+  });
+};
 
 module.exports = {
   rootDir,
   workspaceDir,
   bin,
   exec,
+  spawn,
 };
