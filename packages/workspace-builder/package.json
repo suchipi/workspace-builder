@@ -1,7 +1,7 @@
 {
   "name": "workspace-builder",
   "description": "CLI tool that run builds for every yarn workspace in your monorepo",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "bin": "scripts/cli.js",
   "license": "MIT",
   "keywords": [
