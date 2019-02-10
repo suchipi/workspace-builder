@@ -1,0 +1,13 @@
+{
+  "name": "@workspace-builder/parcel",
+  "version": "0.4.0",
+  "main": "index.js",
+  "keywords": [
+    "workspace-builder"
+  ],
+  "author": "Lily Scott <me@suchipi.com>",
+  "dependencies": {
+    "@workspace-builder/tools": "0.4.0",
+    "parcel-bundler": "1.11.0"
+  }
+}
