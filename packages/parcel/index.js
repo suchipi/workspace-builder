@@ -5,7 +5,7 @@ function build(workspace, options) {
   if (options.watch) {
     spawn(`${bin("parcel")} ${parcelArgs} src/index.html`);
   } else {
-    exec(`${bin("parcel")} ${parcelArgs} build src/index.html`);
+    exec(`${bin("parcel")} build src/index.html`);
   }
 }
 
