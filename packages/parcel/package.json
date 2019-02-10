@@ -1,6 +1,6 @@
 {
   "name": "@workspace-builder/parcel",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "main": "index.js",
   "keywords": [
     "workspace-builder"
