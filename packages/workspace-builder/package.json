@@ -1,7 +1,7 @@
 {
   "name": "workspace-builder",
   "description": "CLI tool that run builds for every yarn workspace in your monorepo",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "bin": "scripts/cli.js",
   "license": "MIT",
   "keywords": [
@@ -13,7 +13,7 @@
   "author": "Lily Scott <me@suchipi.com>",
   "repository": "suchipi/workspace-builder",
   "dependencies": {
-    "@workspace-builder/tools": "0.2.0",
+    "@workspace-builder/tools": "0.4.0",
     "chalk": "^2.4.2",
     "chokidar": "^2.0.4",
     "lodash": "^4.17.11",
