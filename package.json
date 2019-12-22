@@ -8,6 +8,7 @@
     "packages/rollup-cjs",
     "packages/rollup-umd",
     "packages/tools",
+    "packages/webpack",
     "packages/workspace-builder"
   ],
   "devDependencies": {
