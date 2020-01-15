@@ -63,7 +63,13 @@ workspaces
     const builders = getBuilders(workspace);
     return (
       builders.length > 0 &&
-      !builders.every((builder) => builder.managesOwnWatcher)
+      !builders.every((builder) =>
+        typeof builder.managesOwnWatcher === "boolean"
+          ? builder.managesOwnWatcher
+          : typeof builder.managesOwnWatcher === "function"
+          ? builder.managesOwnWatcher(workspace)
+          : false
+      )
     );
   })
   .forEach((workspace) => {
