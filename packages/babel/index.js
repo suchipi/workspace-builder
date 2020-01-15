@@ -27,6 +27,6 @@ module.exports = function build(workspace, options) {
       process.env.NODE_ENV || options.watch ? "development" : "production"
     }" ${bin(
       "babel"
-    )} --config-file ${babelConfig} --extensions ".ts,.js" src -d dist --ignore *.test.js`
+    )} --config-file ${babelConfig} --extensions ".ts,.tsx,.js,.jsx" src -d dist --ignore *.test.js`
   );
 };
