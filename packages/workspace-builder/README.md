@@ -36,10 +36,13 @@ Here is a list of all the official builder modules available on npm:
 
 - [`@workspace-builder/babel`](https://npm.im/@workspace-builder/babel)
 - [`@workspace-builder/copy-ts`](https://npm.im/@workspace-builder/copy-ts)
+- [`@workspace-builder/parcel`](https://npm.im/@workspace-builder/parcel)
 - [`@workspace-builder/rollup`](https://npm.im/@workspace-builder/rollup)
 - [`@workspace-builder/rollup-cjs`](https://npm.im/@workspace-builder/rollup-cjs)
 - [`@workspace-builder/rollup-umd`](https://npm.im/@workspace-builder/rollup-umd)
-- [`@workspace-builder/parcel`](https://npm.im/@workspace-builder/parcel)
+- [`@workspace-builder/shell-command`](https://npm.im/@workspace-builder/shell-command)
+- [`@workspace-builder/webpack`](https://npm.im/@workspace-builder/webpack)
+- [`@workspace-builder/webpack-dev-server`](https://npm.im/@workspace-builder/webpack-dev-server)
 
 ## License
 

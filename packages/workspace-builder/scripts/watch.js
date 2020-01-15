@@ -7,11 +7,16 @@ const debounce = require("lodash/debounce");
 const workspaces = getWorkspaces();
 
 function build(workspace, builder, options) {
+  const managesOwnWatcher =
+    typeof builder.managesOwnWatcher === "boolean"
+      ? builder.managesOwnWatcher
+      : typeof builder.managesOwnWatcher === "function"
+      ? builder.managesOwnWatcher(workspace)
+      : false;
+
   console.log(
     chalk`{cyan ${workspace.name}: ${builder.name}} {gray ${
-      builder.managesOwnWatcher
-        ? "(using own watcher)"
-        : "(using built-in watcher)"
+      managesOwnWatcher ? "(using own watcher)" : "(using built-in watcher)"
     }}`
   );
 

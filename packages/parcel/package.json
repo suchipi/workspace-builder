@@ -1,13 +1,14 @@
 {
   "name": "@workspace-builder/parcel",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "main": "index.js",
+  "license": "MIT",
   "keywords": [
     "workspace-builder"
   ],
   "author": "Lily Scott <me@suchipi.com>",
   "dependencies": {
-    "@workspace-builder/tools": "0.4.0",
+    "@workspace-builder/tools": "1.0.0",
     "parcel-bundler": "1.11.0"
   }
 }

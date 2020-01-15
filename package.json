@@ -7,8 +7,10 @@
     "packages/rollup",
     "packages/rollup-cjs",
     "packages/rollup-umd",
+    "packages/shell-command",
     "packages/tools",
     "packages/webpack",
+    "packages/webpack-dev-server",
     "packages/workspace-builder"
   ],
   "devDependencies": {

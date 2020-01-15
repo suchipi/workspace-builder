@@ -10,6 +10,7 @@ const {
   workspaceDir,
   bin,
   exec,
+  spawn,
 } = require("@workspace-builder/tools");
 
 // rootDir: get the absolute path to the project root dir or a path relative to the project root dir.
@@ -27,6 +28,9 @@ bin("babel"); // eg "/Users/suchipi/Code/my-project/node_modules/.bin/babel"
 
 // exec: Run a command-line script from within the workspace dir and wait for it to complete. If it exits with a nonzero status code, an error will be thrown.
 exec(`${bin("babel")} src --out-dir dist`); // runs eg "/Users/suchipi/Code/my-project/node_modules/.bin/babel src --out-dir dist" from within the workspace dir
+
+// spawn: Run a command-line script from within the workspace dir and DO NOT wait for it to complete.
+spawn(`${bin("babel")} --watch src --out-dir dist`); // runs eg "/Users/suchipi/Code/my-project/node_modules/.bin/babel src --out-dir dist" from within the workspace dir
 ```
 
 ## License

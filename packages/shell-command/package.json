@@ -1,15 +1,16 @@
 {
   "name": "@workspace-builder/shell-command",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": "index.js",
+  "license": "MIT",
   "keywords": [
     "workspace-builder"
   ],
   "author": "Lily Scott <me@suchipi.com>",
   "dependencies": {
-    "@workspace-builder/tools": "0.4.0"
+    "@workspace-builder/tools": "1.0.0"
   },
   "peerDependencies": {
-    "workspace-builder": ">=0.5.0"
+    "workspace-builder": "^1.0.0"
   }
 }

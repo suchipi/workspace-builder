@@ -5,9 +5,10 @@ const {
   rootDir,
   workspaceDir,
   exec,
+  spawn,
 } = require("@workspace-builder/tools");
 
-module.exports = function build(workspace, options) {
+function build(workspace, options) {
   let babelConfig = path.resolve(__dirname, "defaultbabelrc");
   if (fs.existsSync(rootDir(".babelrc"))) {
     babelConfig = rootDir(".babelrc");
@@ -22,11 +23,14 @@ module.exports = function build(workspace, options) {
     babelConfig = workspaceDir("babel.config.js");
   }
 
-  exec(
+  (options.watch ? spawn : exec)(
     `env NODE_ENV="${
       process.env.NODE_ENV || options.watch ? "development" : "production"
-    }" ${bin(
-      "babel"
-    )} --config-file ${babelConfig} --extensions ".ts,.tsx,.js,.jsx" src -d dist --ignore *.test.js`
+    }" ${bin("babel")} ${
+      options.watch ? "--watch" : ""
+    } --config-file ${babelConfig} --extensions ".ts,.tsx,.js,.jsx" src -d dist --ignore *.test.js`
   );
-};
+}
+build.managesOwnWatcher = true;
+
+module.exports = build;

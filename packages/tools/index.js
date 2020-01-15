@@ -30,12 +30,12 @@ const exec = (cmd) => {
   return result;
 };
 const spawn = (cmd) => {
-  const parts = cmd.split(" ").map((part) => part.trim());
-  const [program, ...args] = parts;
-  return child_process.spawn(program, args, {
-    stdio: "inherit",
+  const child = child_process.exec(cmd, {
     cwd: process.cwd(),
   });
+  child.stdout.pipe(process.stdout);
+  child.stderr.pipe(process.stderr);
+  return child;
 };
 
 module.exports = {

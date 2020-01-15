@@ -4,9 +4,10 @@ const {
   rootDir,
   workspaceDir,
   exec,
+  spawn,
 } = require("@workspace-builder/tools");
 
-module.exports = function build(workspace, options) {
+function build(workspace, options) {
   let webpackConfigPath = null;
   if (fs.existsSync(rootDir("webpack.config.js"))) {
     webpackConfigPath = rootDir("webpack.config.js");
@@ -32,11 +33,15 @@ module.exports = function build(workspace, options) {
     } catch (err) {}
   }
 
-  exec(
+  (options.watch ? spawn : exec)(
     `env NODE_ENV="${env}" ${
       options.watch ? bin("webpack-dev-server") : bin("webpack")
     } ${hasModeSet ? "" : `--mode ${env}`} ${
       webpackConfigPath ? `--config ${webpackConfigPath}` : ""
     }`
   );
-};
+}
+
+build.managesOwnWatcher = true;
+
+module.exports = build;
