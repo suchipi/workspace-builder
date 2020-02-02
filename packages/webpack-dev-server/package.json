@@ -1,6 +1,6 @@
 {
   "name": "@workspace-builder/webpack-dev-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "license": "MIT",
   "keywords": [
@@ -9,6 +9,7 @@
   "author": "Lily Scott <me@suchipi.com>",
   "dependencies": {
     "@workspace-builder/tools": "1.0.0",
+    "cross-env": "^7.0.0",
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"

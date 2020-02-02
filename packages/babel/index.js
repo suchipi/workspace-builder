@@ -24,7 +24,7 @@ function build(workspace, options) {
   }
 
   (options.watch ? spawn : exec)(
-    `env NODE_ENV="${
+    `${bin("cross-env")} NODE_ENV="${
       process.env.NODE_ENV || options.watch ? "development" : "production"
     }" ${bin("babel")} ${
       options.watch ? "--watch" : ""

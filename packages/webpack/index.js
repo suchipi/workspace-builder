@@ -34,7 +34,7 @@ function build(workspace, options) {
   }
 
   (options.watch ? spawn : exec)(
-    `env NODE_ENV="${env}" ${bin("webpack")} ${
+    `${bin("cross-env")} NODE_ENV="${env}" ${bin("webpack")} ${
       hasModeSet ? "" : `--mode ${env}`
     } ${options.watch ? "--watch" : ""} ${
       webpackConfigPath ? `--config ${webpackConfigPath}` : ""
