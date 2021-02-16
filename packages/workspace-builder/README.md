@@ -44,6 +44,7 @@ Here is a list of all the official builder modules available on npm:
 - [`@workspace-builder/webpack`](https://npm.im/@workspace-builder/webpack)
 - [`@workspace-builder/webpack-serve`](https://npm.im/@workspace-builder/webpack-serve)
 - [`@workspace-builder/webpack-dev-server`](https://npm.im/@workspace-builder/webpack-dev-server)
+- [`@workspace-builder/nodemon`](https://npm.im/@workspace-builder/nodemon)
 
 ## License
 

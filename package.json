@@ -4,6 +4,7 @@
   "workspaces": [
     "packages/babel",
     "packages/copy-ts",
+    "packages/nodemon",
     "packages/rollup",
     "packages/rollup-cjs",
     "packages/rollup-umd",
@@ -11,6 +12,7 @@
     "packages/tools",
     "packages/webpack",
     "packages/webpack-dev-server",
+    "packages/webpack-serve",
     "packages/workspace-builder"
   ],
   "devDependencies": {
