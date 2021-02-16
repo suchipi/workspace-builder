@@ -42,6 +42,7 @@ Here is a list of all the official builder modules available on npm:
 - [`@workspace-builder/rollup-umd`](https://npm.im/@workspace-builder/rollup-umd)
 - [`@workspace-builder/shell-command`](https://npm.im/@workspace-builder/shell-command)
 - [`@workspace-builder/webpack`](https://npm.im/@workspace-builder/webpack)
+- [`@workspace-builder/webpack-serve`](https://npm.im/@workspace-builder/webpack-serve)
 - [`@workspace-builder/webpack-dev-server`](https://npm.im/@workspace-builder/webpack-dev-server)
 
 ## License
